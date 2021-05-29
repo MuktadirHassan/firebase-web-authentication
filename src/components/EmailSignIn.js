@@ -2,7 +2,7 @@ import firebase from "firebase";
 import "firebase/auth";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { userInfo } from "../App";
 import initializeFirebase from "./../lib/initializeFirebase";
 
@@ -11,6 +11,11 @@ export default function EmailSignIn() {
   initializeFirebase();
   // Title
   document.title = "🔥 SignIn";
+
+  let history = useHistory();
+  let location = useLocation();
+
+  let { from } = location.state || { from: { pathname: "/" } };
 
   // Form handling
   const {
@@ -28,6 +33,7 @@ export default function EmailSignIn() {
         var user = userCredential.user;
         console.log(user);
         setUser(user);
+        history.replace(from);
       })
       .catch((error) => {
         var errorCode = error.code;
