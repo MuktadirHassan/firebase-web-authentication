@@ -1,3 +1,5 @@
+import { faFacebook } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import firebase from "firebase/app";
 import "firebase/auth";
 import React from "react";
@@ -24,10 +26,10 @@ export default function GoogleSignIn() {
   return (
     <div className="mx-auto my-8 ">
       <button
-        className="p-2 text-white bg-gray-800 rounded focus:outline-none focus:ring focus:ring-gray-300"
+        className="p-2 text-3xl rounded-full focus:outline-none focus:ring focus:ring-gray-300"
         onClick={handleFacebookSignIn}
       >
-        Facebook
+        <FontAwesomeIcon icon={faFacebook} />
       </button>
     </div>
   );
