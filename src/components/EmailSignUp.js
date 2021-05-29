@@ -1,8 +1,12 @@
+import firebase from "firebase";
+import "firebase/auth";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import initializeFirebase from "./../lib/initializeFirebase";
 
 export default function EmailSignUp() {
+  initializeFirebase();
   // Title
   document.title = "🔥 SignUp";
 
@@ -13,9 +17,26 @@ export default function EmailSignUp() {
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
 
-  console.log(watch("email"));
+  // Create Account
+  const onSubmit = (data) => {
+    console.log(data);
+
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(data.email, data.password)
+      .then((userCredential) => {
+        // Signed in
+        var user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorMessage);
+      });
+  };
+
   return (
     <div className="max-w-sm p-6 mx-auto rounded shadow-lg">
       <h1 className="mb-4 text-3xl">Registration Form</h1>

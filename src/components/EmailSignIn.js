@@ -1,8 +1,14 @@
-import React from "react";
+import firebase from "firebase";
+import "firebase/auth";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { userInfo } from "../App";
+import initializeFirebase from "./../lib/initializeFirebase";
 
 export default function EmailSignIn() {
+  const [user, setUser] = useContext(userInfo);
+  initializeFirebase();
   // Title
   document.title = "🔥 SignIn";
 
@@ -13,9 +19,22 @@ export default function EmailSignIn() {
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(data.email, data.password)
+      .then((userCredential) => {
+        // Signed in
+        var user = userCredential.user;
+        console.log(user);
+        setUser(user);
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+      });
+  };
 
-  console.log(watch("email"));
   return (
     <div className="max-w-sm p-6 mx-auto rounded shadow-lg">
       <h1 className="mb-4 text-3xl">Login Form</h1>
