@@ -26,7 +26,7 @@ export default function GoogleSignIn() {
   return (
     <div className="mx-auto my-8 ">
       <button
-        className="p-2 text-3xl rounded-full focus:outline-none focus:ring focus:ring-gray-300"
+        className="p-1 text-3xl text-blue-800 rounded-full  focus:outline-none focus:ring focus:ring-gray-300"
         onClick={handleFacebookSignIn}
       >
         <FontAwesomeIcon icon={faFacebook} />

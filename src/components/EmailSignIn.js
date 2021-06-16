@@ -1,3 +1,5 @@
+import { faEdge } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import firebase from "firebase";
 import "firebase/auth";
 import React, { useContext } from "react";
@@ -46,7 +48,9 @@ export default function EmailSignIn() {
             className="px-2 py-4 rounded focus:outline-none focus:ring focus:ring-gray-300 "
           />
           {errors.email && (
-            <span className="text-gray-900">This field is required</span>
+            <span className="text-sm text-gray-800">
+              This field is required <FontAwesomeIcon icon={faEdge} />
+            </span>
           )}
           <input
             {...register("password", { required: true, minLength: 6 })}
