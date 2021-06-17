@@ -38,7 +38,7 @@ export default function EmailSignUp() {
   };
 
   return (
-    <div className="max-w-sm p-6 mx-auto rounded shadow-lg">
+    <div className="max-w-sm p-6 mx-auto mt-8 rounded shadow-lg">
       <h1 className="mb-4 text-3xl">Registration Form</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-1 gap-6 pb-4 text-gray-700">

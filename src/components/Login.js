@@ -5,7 +5,7 @@ import GoogleSignIn from "./GoogleSignIn";
 
 export default function Login() {
   return (
-    <div className="max-w-sm mx-auto">
+    <div className="max-w-sm mx-auto mt-8">
       <EmailSignIn></EmailSignIn>
 
       {/* Third Party SignIn */}

@@ -19,16 +19,21 @@ export default function GoogleSignIn() {
   const handleGoogleSignIn = () => {
     firebase
       .auth()
-      .signInWithPopup(provider)
-      .then((result) => {
-        setUser(result.user);
-        history.replace(from);
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        var email = error.email;
-        var credential = error.credential;
+      .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+      .then(() => {
+        return firebase
+          .auth()
+          .signInWithPopup(provider)
+          .then((result) => {
+            setUser(result.user);
+            history.replace(from);
+          })
+          .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            var email = error.email;
+            var credential = error.credential;
+          });
       });
   };
 
